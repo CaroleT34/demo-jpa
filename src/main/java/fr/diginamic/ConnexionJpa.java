@@ -55,7 +55,29 @@ public class ConnexionJpa {
 		for (Livre l : livres) {
 			System.out.println(l);
 		}
+
+		transac.commit();
 		
+		//TP3
+		//Mapper tous les attributs avec tous les champs de toutes les tables
+		transac.begin();
+		
+		TypedQuery<Client> query2 = em.createQuery("SELECT c FROM Client c", Client.class);
+		List<Client> clients = query2.getResultList();
+		
+		TypedQuery<Emprunt> query3 = em.createQuery("SELECT e FROM Emprunt e", Emprunt.class);
+		List<Emprunt> emprunts = query3.getResultList();
+		
+		//TypedQuery<Emprunt> query3 = em.createQuery("SELECT e FROM Emprunt e INNER JOIN Client c ON emprunt.id_client = client.id", Emprunt.class);
+		//List<Emprunt> emprunts = query3.getResultList();
+		
+		for (Client c : clients) {
+			System.out.println(c);
+		}
+		
+		for (Emprunt e : emprunts) {
+			System.out.println(e);
+		}
 		
 		transac.commit();
 		

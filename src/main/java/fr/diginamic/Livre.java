@@ -20,10 +20,10 @@ public class Livre {
 	@Id
 	private Integer id;
 	
-	@Column(name ="titre", length = 30, nullable = false , unique = true)
+	@Column(name ="titre", length = 255, nullable = false , unique = true)
 	private String titre;
 	
-	@Column(name ="auteur", length = 30, nullable = false , unique = true)
+	@Column(name ="auteur", length = 50, nullable = false , unique = true)
 	private String auteur;
 	
 	/**Constructeur
