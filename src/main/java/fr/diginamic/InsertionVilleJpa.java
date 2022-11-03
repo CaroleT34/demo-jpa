@@ -37,8 +37,14 @@ public class InsertionVilleJpa {
 		ville.setCodePostal(34070);
 		ville.setDateDernierRecensement(date);
 		ville.setCategorie(Categorie.MOYENNE);
-		
 		em.persist(ville); //Genere Insert
+		
+		Habitant hab = new Habitant();
+		hab.setNom("Gus");
+		hab.setPrenom("GusGus");
+		em.persist(hab);
+		
+		ville.getHabitants().add(hab);
 		transac.commit();
 
 	}

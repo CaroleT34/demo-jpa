@@ -3,7 +3,9 @@
  */
 package fr.diginamic;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -48,7 +52,28 @@ public class Ville {
 	@JoinColumn(name="ID_REGION")
 	private Region region;
 	
+	@ManyToMany
+	@JoinTable(name= "Lien_Ville_Habitant",
+			joinColumns = @JoinColumn(name = "ID_VILLE", referencedColumnName = "ID"),
+			inverseJoinColumns = @JoinColumn(name = "ID_HAB", referencedColumnName = "ID"))
+	private List<Habitant> habitants = new ArrayList<Habitant>();
 	
+	/**Getter habitants
+	 * 
+	 * @return List<Habitant> habitants
+	 */
+	public List<Habitant> getHabitants() {
+		return habitants;
+	}
+
+	/** Setter habitants
+	 * 
+	 * @param habitants the habitants to set (type List<Habitant>)
+	 */
+	public void setHabitants(List<Habitant> habitants) {
+		this.habitants = habitants;
+	}
+
 	/**Getter region
 	 * 
 	 * @return Region region
