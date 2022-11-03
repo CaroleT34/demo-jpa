@@ -3,9 +3,15 @@
  */
 package fr.diginamic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -18,10 +24,14 @@ import javax.persistence.Table;
 public class Region {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(name ="NOM", length = 30, nullable = false , unique = true)
-	private String Nom;
+	private String nom;
+	
+	@OneToMany(mappedBy = "region")
+	private List<Ville> villes = new ArrayList<Ville>();
 	/**Constructeur
 	 *
 	 */
@@ -50,7 +60,7 @@ public class Region {
 	 * @return String nom
 	 */
 	public String getNom() {
-		return Nom;
+		return nom;
 	}
 
 	/** Setter nom
@@ -58,12 +68,28 @@ public class Region {
 	 * @param nom the nom to set (type String)
 	 */
 	public void setNom(String nom) {
-		Nom = nom;
+		this.nom = nom;
+	}
+
+	/**Getter villes
+	 * 
+	 * @return List<Ville> villes
+	 */
+	public List<Ville> getVilles() {
+		return villes;
+	}
+
+	/** Setter villes
+	 * 
+	 * @param villes the villes to set (type List<Ville>)
+	 */
+	public void setVilles(List<Ville> villes) {
+		this.villes = villes;
 	}
 
 	@Override
 	public String toString() {
-		return "Region [id=" + id + ", Nom=" + Nom + "]";
+		return "Region [id=" + id + ", Nom=" + nom + "]";
 	}
 	
 

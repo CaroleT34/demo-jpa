@@ -12,6 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,6 +44,27 @@ public class Ville {
 	@Enumerated(EnumType.STRING) // Stock le nom
 	private Categorie categorie;
 	
+	@ManyToOne
+	@JoinColumn(name="ID_REGION")
+	private Region region;
+	
+	
+	/**Getter region
+	 * 
+	 * @return Region region
+	 */
+	public Region getRegion() {
+		return region;
+	}
+
+	/** Setter region
+	 * 
+	 * @param region the region to set (type Region)
+	 */
+	public void setRegion(Region region) {
+		this.region = region;
+	}
+
 	/**Constructeur
 	 *
 	 */
