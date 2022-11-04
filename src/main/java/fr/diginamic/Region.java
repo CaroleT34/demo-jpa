@@ -30,8 +30,8 @@ public class Region {
 	@Column(name ="NOM", length = 30, nullable = false , unique = true)
 	private String nom;
 	
-	@OneToMany(mappedBy = "region")
-	private List<Ville> villes = new ArrayList<Ville>();
+//	@OneToMany(mappedBy = "region")
+//	private List<Ville> villes = new ArrayList<Ville>();
 	/**Constructeur
 	 *
 	 */
@@ -71,21 +71,23 @@ public class Region {
 		this.nom = nom;
 	}
 
-	/**Getter villes
-	 * 
-	 * @return List<Ville> villes
-	 */
-	public List<Ville> getVilles() {
-		return villes;
-	}
-
-	/** Setter villes
-	 * 
-	 * @param villes the villes to set (type List<Ville>)
-	 */
-	public void setVilles(List<Ville> villes) {
-		this.villes = villes;
-	}
+//	/**
+//	 * Getter villes
+//	 * 
+//	 * @return List<Ville> villes
+//	 */
+//	public List<Ville> getVilles() {
+//		return villes;
+//	}
+//
+//	/**
+//	 * Setter villes
+//	 * 
+//	 * @param villes the villes to set (type List<Ville>)
+//	 */
+//	public void setVilles(List<Ville> villes) {
+//		this.villes = villes;
+//	}
 
 	@Override
 	public String toString() {

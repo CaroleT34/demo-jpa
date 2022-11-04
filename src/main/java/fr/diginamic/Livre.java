@@ -3,9 +3,13 @@
  */
 package fr.diginamic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,11 +30,19 @@ public class Livre {
 	@Column(name ="auteur", length = 50, nullable = false , unique = true)
 	private String auteur;
 	
+	 @ManyToMany(mappedBy="livres")
+	 private List<Emprunt> emprunts = new ArrayList<Emprunt>();
+
 	/**Constructeur
 	 *
 	 */
 	public Livre() {
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Livre [id=" + id + ", titre=" + titre + ", auteur=" + auteur + ", emprunts=" + emprunts + "]";
 	}
 
 	/**Getter id
@@ -81,9 +93,20 @@ public class Livre {
 		this.auteur = auteur;
 	}
 
-	@Override
-	public String toString() {
-		return "Livre [id=" + id + ", titre=" + titre + ", auteur=" + auteur + "]";
+	/**Getter emprunts
+	 * 
+	 * @return List<Emprunt> emprunts
+	 */
+	public List<Emprunt> getEmprunts() {
+		return emprunts;
+	}
+
+	/** Setter emprunts
+	 * 
+	 * @param emprunts the emprunts to set (type List<Emprunt>)
+	 */
+	public void setEmprunts(List<Emprunt> emprunts) {
+		this.emprunts = emprunts;
 	}
 	
 

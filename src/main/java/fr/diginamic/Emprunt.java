@@ -3,11 +3,17 @@
  */
 package fr.diginamic;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,8 +42,17 @@ public class Emprunt {
 	//TIMESTAMP date avec une heure
 	private Integer delai;
 	
-	@Column(name ="id_client", length = 10, nullable = false , unique = true)
-	private Integer id_client;
+	@ManyToOne
+	@JoinColumn(name="ID_CLIENT")
+	private Client client;
+	
+
+	//Autre facon de l'écrire : @ManyToMany(mappedBy="") <--- Relation esclave
+	@ManyToMany
+	@JoinTable(name= "COMPO",
+			joinColumns = @JoinColumn(name = "ID_EMP", referencedColumnName = "ID"),
+			inverseJoinColumns = @JoinColumn(name = "ID_LIV", referencedColumnName = "ID"))
+	private List<Livre> livres = new ArrayList<Livre>();
 	
 	/**Constructeur
 	 *
@@ -110,26 +125,46 @@ public class Emprunt {
 		this.delai = delai;
 	}
 
-	/**Getter id_client
+	/**Getter client
 	 * 
-	 * @return Integer id_client
+	 * @return Client client
 	 */
-	public Integer getId_client() {
-		return id_client;
+	public Client getClient() {
+		return client;
 	}
 
-	/** Setter id_client
+	/** Setter client
 	 * 
-	 * @param id_client the id_client to set (type Integer)
+	 * @param client the client to set (type Client)
 	 */
-	public void setId_client(Integer id_client) {
-		this.id_client = id_client;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
+	/**Getter livres
+	 * 
+	 * @return List<Livre> livres
+	 */
+	public List<Livre> getLivres() {
+		return livres;
+	}
+
+	/** Setter livres
+	 * 
+	 * @param livres the livres to set (type List<Livre>)
+	 */
+	public void setLivres(List<Livre> livres) {
+		this.livres = livres;
+	}
+	
 	@Override
 	public String toString() {
 		return "Emprunt [id=" + id + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", delai=" + delai
-				+ ", id_client=" + id_client +"]" ;
+				+ "]";
 	}
+	
+	
+
+	
 
 }

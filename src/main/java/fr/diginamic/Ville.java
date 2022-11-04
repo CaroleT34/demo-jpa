@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -26,13 +27,14 @@ import javax.persistence.TemporalType;
  * @author Krol
  *
  */
-@Entity
-@Table(name="ville")
+//@Entity
+//@Table(name="ville")
+@Embeddable
 public class Ville {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private int id;
 	
 	@Column(name ="nom", length = 50, nullable = false , unique = true)
 	private String nom;
@@ -48,47 +50,45 @@ public class Ville {
 	@Enumerated(EnumType.STRING) // Stock le nom
 	private Categorie categorie;
 	
-	@ManyToOne
-	@JoinColumn(name="ID_REGION")
-	private Region region;
-	
-	@ManyToMany
-	@JoinTable(name= "Lien_Ville_Habitant",
-			joinColumns = @JoinColumn(name = "ID_VILLE", referencedColumnName = "ID"),
-			inverseJoinColumns = @JoinColumn(name = "ID_HAB", referencedColumnName = "ID"))
-	private List<Habitant> habitants = new ArrayList<Habitant>();
-	
-	/**Getter habitants
-	 * 
-	 * @return List<Habitant> habitants
-	 */
-	public List<Habitant> getHabitants() {
-		return habitants;
-	}
+//	@ManyToOne
+//	@JoinColumn(name="ID_REGION")
+//	private Region region;
 
-	/** Setter habitants
-	 * 
-	 * @param habitants the habitants to set (type List<Habitant>)
-	 */
-	public void setHabitants(List<Habitant> habitants) {
-		this.habitants = habitants;
-	}
-
-	/**Getter region
-	 * 
-	 * @return Region region
-	 */
-	public Region getRegion() {
-		return region;
-	}
-
-	/** Setter region
-	 * 
-	 * @param region the region to set (type Region)
-	 */
-	public void setRegion(Region region) {
-		this.region = region;
-	}
+//	@ManyToMany
+//	@JoinTable(name = "Lien_Ville_Habitant", joinColumns = @JoinColumn(name = "ID_VILLE", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_HAB", referencedColumnName = "ID"))
+//	private List<Habitant> habitants = new ArrayList<Habitant>();
+//	
+//	/**Getter habitants
+//	 * 
+//	 * @return List<Habitant> habitants
+//	 */
+//	public List<Habitant> getHabitants() {
+//		return habitants;
+//	}
+//
+//	/** Setter habitants
+//	 * 
+//	 * @param habitants the habitants to set (type List<Habitant>)
+//	 */
+//	public void setHabitants(List<Habitant> habitants) {
+//		this.habitants = habitants;
+//	}
+//
+//	/**Getter region
+//	 * 
+//	 * @return Region region
+//	 */
+//	public Region getRegion() {
+//		return region;
+//	}
+//
+//	/** Setter region
+//	 * 
+//	 * @param region the region to set (type Region)
+//	 */
+//	public void setRegion(Region region) {
+//		this.region = region;
+//	}
 
 	/**Constructeur
 	 *
@@ -97,21 +97,21 @@ public class Ville {
 		super();
 	}
 
-	/**Getter id
-	 * 
-	 * @return int id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/** Setter id
-	 * 
-	 * @param id the id to set (type int)
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
+//	/**Getter id
+//	 * 
+//	 * @return int id
+//	 */
+//	public int getId() {
+//		return id;
+//	}
+//
+//	/** Setter id
+//	 * 
+//	 * @param id the id to set (type int)
+//	 */
+//	public void setId(int id) {
+//		this.id = id;
+//	}
 
 	/**Getter nom
 	 * 
@@ -179,7 +179,7 @@ public class Ville {
 
 	@Override
 	public String toString() {
-		return "Ville [id=" + id + ", nom=" + nom + ", codePostal=" + codePostal + ", dateDernierRecensement="
+		return "Ville [nom=" + nom + ", codePostal=" + codePostal + ", dateDernierRecensement="
 				+ dateDernierRecensement + ", categorie=" + categorie + "]";
 	}
 	

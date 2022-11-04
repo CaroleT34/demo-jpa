@@ -28,23 +28,31 @@ public class InsertionVilleJpa {
 		EntityTransaction transac = em.getTransaction();
 		
 		transac.begin();
-		
+//		
 		Date date = Calendar.getInstance().getTime();
-		
-		
-		Ville ville = new Ville();
-		ville.setNom("Marmande");
-		ville.setCodePostal(34070);
-		ville.setDateDernierRecensement(date);
-		ville.setCategorie(Categorie.MOYENNE);
-		em.persist(ville); //Genere Insert
-		
+//		
+//		
+//		Ville ville = new Ville();
+//		ville.setNom("Marmande");
+//		ville.setCodePostal(34070);
+//		ville.setDateDernierRecensement(date);
+//		ville.setCategorie(Categorie.MOYENNE);
+//		em.persist(ville); //Genere Insert
+//		
 		Habitant hab = new Habitant();
 		hab.setNom("Gus");
 		hab.setPrenom("GusGus");
+		Ville ville = new Ville();
+		ville.setNom("Floirac");
+		ville.setCodePostal(33000);
+		ville.setDateDernierRecensement(date);
+		ville.setCategorie(Categorie.MOYENNE);
+		hab.setVille(ville);
 		em.persist(hab);
+//		
+//		ville.getHabitants().add(hab);
 		
-		ville.getHabitants().add(hab);
+		
 		transac.commit();
 
 	}

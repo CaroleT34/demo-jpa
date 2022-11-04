@@ -3,11 +3,15 @@
  */
 package fr.diginamic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -27,6 +31,25 @@ public class Client {
 	
 	@Column(name ="prenom", length = 50, nullable = false , unique = true)
 	private String prenom;
+	
+	@OneToMany(mappedBy = "client")
+	private List<Emprunt> emprunts = new ArrayList<Emprunt>();
+
+	/**Getter emprunts
+	 * 
+	 * @return List<Emprunt> emprunts
+	 */
+	public List<Emprunt> getEmprunts() {
+		return emprunts;
+	}
+
+	/** Setter emprunts
+	 * 
+	 * @param emprunts the emprunts to set (type List<Emprunt>)
+	 */
+	public void setEmprunts(List<Emprunt> emprunts) {
+		this.emprunts = emprunts;
+	}
 
 	/**Constructeur
 	 *
@@ -85,7 +108,7 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + "]";
+		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", emprunts=" + emprunts + "]";
 	}
 
 }

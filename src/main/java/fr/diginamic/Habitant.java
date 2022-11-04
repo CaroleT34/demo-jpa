@@ -4,6 +4,7 @@
 package fr.diginamic;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,12 +23,14 @@ public class Habitant {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name ="nom", length = 50, nullable = false , unique = true)
+	@Column(name ="nom_hab", length = 50, nullable = true , unique = true)
 	private String nom;
 	
-	@Column(name ="prenom", length = 50, nullable = false , unique = true)
+	@Column(name ="prenom", length = 50, nullable = true , unique = true)
 	private String prenom;
 	
+	@Embedded
+	private Ville ville;
 	
 	/**Constructeur
 	 *
@@ -94,5 +97,23 @@ public class Habitant {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+	
+	/**Getter ville
+	 * 
+	 * @return Ville ville
+	 */
+	public Ville getVille() {
+		return ville;
+	}
+
+
+	/** Setter ville
+	 * 
+	 * @param ville the ville to set (type Ville)
+	 */
+	public void setVille(Ville ville) {
+		this.ville = ville;
+	}
+
 
 }
